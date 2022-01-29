@@ -1,0 +1,28 @@
+{% block content %}
+    <h1>Add client to catalog</h1>
+    <form action="/add" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.name.label }}<br>
+            {{ form.name(size=40) }}
+            {% for error in form.name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.phone_num.label }}<br>
+            {{ form.phone_num(size=40) }}
+            {% for error in form.phone_num.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.e_mail.label }}<br>
+            {{ form.e_mail(size=40) }}
+            {% for error in form.e_mail.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.add() }}</p>
+    </form>
+{% endblock %}

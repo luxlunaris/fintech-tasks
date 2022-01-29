@@ -1,0 +1,16 @@
+<h1>List of chats</h1>
+<table border=3 bordercolor="black">
+    {% for row in chats %}
+    <tr>
+        <td width="600" height="30">
+            {{ row }}
+        </td>
+        <td align="center" width="80" height="30">
+            <form action="/{{ row }}">
+                <input type="submit" value="Join" />
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>

@@ -1,0 +1,19 @@
+{% block content %}
+    <h1>{{ name }} transaction</h1>
+    <form method="post" novalidate>
+        <p>
+            {{ form.value_to_buy.label }}<br>
+            {{ form.value_to_buy(size=40) }}  {{ form.buy_curr() }}<br>
+            {% for error in form.value_to_buy.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.value_to_sell.label }}<br>
+            {{ form.value_to_sell(size=40) }}  {{ form.sell_curr() }}<br>
+            {% for error in form.value_to_sell.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+    </form>
+{% endblock %}

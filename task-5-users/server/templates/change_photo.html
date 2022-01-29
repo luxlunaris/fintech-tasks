@@ -1,0 +1,17 @@
+{% block content %}
+    <h1>Change client photo</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <br>
+        <p>Photo should be up to 120x120 px, if it is larger - it will be compressed.</p>
+        <br>
+        <p>
+            {{ form.photo }}
+            {% for error in form.photo.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <br>
+        <p>{{ form.change() }}</p>
+    </form>
+{% endblock %}

@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+
+  postgres:
+    image: 'postgres:10.6'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: '2hard2pass'
+      POSTGRES_USER: 'Cryptomanager'
+      POSTGRES_DB: 'Cryptocurrencies'
+      PGDATA: '/tmp'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    restart: always
+    ports:
+      - '0.0.0.0:5000:5000'
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    command: bash -c "sleep 2 && python db.py && gunicorn -c gunicorn.py app.wsgi:app"

@@ -1,0 +1,80 @@
+<h1>Cryptocurrency Stock Exchange</h1>
+{% if user.is_authenticated %}
+<table border="3" bordercolor="black">
+    <tr>
+        <td align="center" width="200" height="30">
+            <p>Logged in as: {{ user.username }}</p>
+        </td>
+        <td align="center" width="200" height="30">
+            <p>[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]</p>
+        </td>
+        <td align="center" width="200" height="30">
+            <a href="/logout"> Logout </a><br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="600" height="40" colspan="3">
+            <p>Wallet</p>
+            <p>Your balance: {{ user.money }} $</p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="200" height="180">
+            {% for i in range(5) %}
+                <p>{{ wallet[i].currency_name }}: {{ wallet[i].currency_val }}</p>
+            {% endfor %}
+        </td>
+        <td align="center" width="200" height="180">
+            {% for i in range(5) %}
+                <p>{{ wallet[5+i].currency_name }}: {{ wallet[5+i].currency_val }}</p>
+            {% endfor %}
+        </td>
+        <td align="center" width="200" height="180">
+            {% for i in range(5) %}
+                <p>{{ wallet[10+i].currency_name }}: {{ wallet[10+i].currency_val }}</p>
+            {% endfor %}
+        </td> 
+    </tr>
+    <tr>
+        <td align="center" width="600" height="20" colspan="3">
+            <p>Stock</p>
+        </td>
+    </tr>
+    {% for i in range(5) %}   
+        <tr>
+            <td align="center" width="200" height="120">
+                <p>{{ currencies[i].name }}</p>
+                <p>Price to buy: {{ currencies[i].price_to_buy }} $</p>
+                <p>Price to sell: {{ currencies[i].price_to_sell }} $</p>
+                <a href ="/maketrans/{{ currencies[i].id }}"> Buy/sell </a>
+            </td>
+            <td align="center" width="200" height="120">
+                <p>{{ currencies[5+i].name }}</p>
+                <p>Price to buy: {{ currencies[5+i].price_to_buy }} $</p>
+                <p>Price to sell: {{ currencies[5+i].price_to_sell }} $</p>
+                <a href ="/maketrans/{{ currencies[5+i].id }}"> Buy/sell </a>
+            </td>
+            <td align="center" width="200" height="120">
+                <p>{{ currencies[10+i].name }}</p>
+                <p>Price to buy: {{ currencies[10+i].price_to_buy }} $</p>
+                <p>Price to sell: {{ currencies[10+i].price_to_sell }} $</p>
+                <a href ="/maketrans/{{ currencies[10+i].id }}"> Buy/sell </a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+<table border="3" bordercolor="black">
+    <tr>
+        <td align="center" width="200" height="120">
+            <a href="/register"> Create an account </a><br>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="200" height="120">
+            <p>Already have an account?</p>
+            <a href="/login"> Sign in </a>
+        </td>
+    <tr>
+</table>
+{% endif %}

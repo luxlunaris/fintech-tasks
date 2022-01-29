@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+
+  postgres:
+    image: 'postgres:10.6'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 'thebesticancomeupwith'
+      POSTGRES_USER: 'users_rate_films'
+      POSTGRES_DB: 'filmsAPI'
+      PGDATA: '/tmp'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-app
+    restart: always
+    ports:
+      - '0.0.0.0:5000:5000'
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    command: bash -c "sleep 4 && python db.py && gunicorn -c gunicorn.py api.wsgi:app"

@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+  
+  web:
+    build: .
+    image: web
+    container_name: web
+    restart: always
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - postgres
+    command: bash -c "./wait-for-it.sh postgres:5432 -- python init_db.py && gunicorn -c config/gunicorn.py api.wsgi:app"
+  
+  redis:
+    image: 'redis:5.0.4'
+    restart: always
+    ports:
+      - '6379:6379'
+  
+  postgres:
+    image: 'postgres:10.6'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 'chattingpass'
+      POSTGRES_USER: 'chatsmaker'
+      POSTGRES_DB: 'chatsAPI'
+      PGDATA: '/tmp'
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data

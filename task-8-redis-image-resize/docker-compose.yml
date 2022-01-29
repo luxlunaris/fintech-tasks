@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  
+  web:
+    build: .
+    image: web
+    container_name: web
+    restart: always
+    ports:
+      - '5000:5000'
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - worker
+    command: bash -c "gunicorn -c gunicorn.py api.wsgi:app"
+
+  worker:
+    image: web
+    restart: always
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+    command: bash -c "rq worker --url redis://redis:6379/images"
+  
+  redis:
+    image: 'redis:5.0.4'
+    restart: always
+    ports:
+      - '6379:6379'

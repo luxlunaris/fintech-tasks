@@ -1,0 +1,30 @@
+<h1>Catalog of clients</h1>
+
+<table border="3" bordercolor="black">
+{% if clients %}
+<tr>
+    <td align="center" >Photo</td>
+    <td align="center" >Name</td>
+    <td align="center" >Phone Number</td>
+    <td align="center" >E-Mail</td>
+    <td align="center" >Additional</td>
+<tr/>
+{% endif %}
+{% for client in clients.values() %}
+<tr>
+    <td align="center" width="200" height="120"><img src="static/{{ client.photo }}" width="120" height="120" /></td> 
+    <td align="center" width="200" height="120">{{ client.name }}</td> 
+    <td align="center" width="200" height="120">{{ client.phone_num }}</td> 
+    <td align="center" width="200" height="120">{{ client.e_mail }}</td> 
+    <td align="center" width="200" height="120">
+        <a href="/remove/{{ client.id }}"> remove </a> 
+        <br>
+        <a href="/photo/{{ client.id }}"> change photo </a>
+    </td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<div>
+    <a href="/add">Add client</a>
+</div>

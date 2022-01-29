@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js">
+        </script>
+        <script language="javascript" type="text/javascript" src='./static/js/chat.js'>
+        </script>
+    </head>
+    <body>
+        <table border="1" bordercolor="black">
+            <tr>
+                <td align="center" width="210" height="65">
+                    <p>Welcome to channel</p>
+                    <h1 id="channel">Unknown</h1>
+                </td>
+                <td align="center" width="210" height="65">
+                    <form action="/">
+                        <input type="submit" value="Return to main page" />
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" width="210" height="60">
+                    <button id="connect">Connect</button>
+                </td>
+                <td align="center" width="210" height="60">
+                    <span id="name">Unknown</span>
+                    <br>
+                    <span id="status">disconnected</span>
+                </td>
+            <tr>
+                <td align="center" width="420" height="470" colspan="2">
+                    <div id="log"
+                        style="width:23em;height:25em;text-align:left;word-wrap:break-word;overflow:auto;border:1px solid black">
+                    </div>
+                    <br>
+                    <form id="chatform" onsubmit="return false;">
+                        <input id="text" type="text" size="50"/>
+                        <input id="send" type="button" value="Send" disabled/>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
