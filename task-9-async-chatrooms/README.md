@@ -1,6 +1,6 @@
 **About**
 
-This aiohttp webserver allows you using chat rooms. 
+This aiohttp web-server is an example of chat rooms. 
 
 **Usage**
 
@@ -25,8 +25,6 @@ You can connect to localhost:5000/api/doc/ to see Swagger UI documentation on ad
 `isort --apply --recursive`
 
 **Run tests**
-
-After running the app, in new console:
 
 ```
 docker-compose run --rm web bash
